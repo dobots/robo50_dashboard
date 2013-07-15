@@ -1,10 +1,10 @@
 <library path="src">
-  <class name="CreateDashboard" type="robo50_dashboard.dashboard.Robo50Dashboard" base_class_type="rqt_gui_py::Plugin">
+  <class name="CreateDashboard" type="bobby_dashboard.dashboard.BobbyDashboard" base_class_type="rqt_gui_py::Plugin">
     <description>
-      Dashboard for the Robo50
+      Dashboard for the Bobby
     </description>
     <qtgui>
-      <label>Robo50 Dashboard</label>
+      <label>Bobby Dashboard</label>
       <statustip>Test robot_dashboard.</statustip>
     </qtgui>
   </class>

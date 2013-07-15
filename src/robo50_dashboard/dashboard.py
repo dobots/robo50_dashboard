@@ -1,9 +1,9 @@
-import roslib;roslib.load_manifest('robo50_dashboard')
+import roslib;roslib.load_manifest('bobby_dashboard')
 import rospy
 
 import diagnostic_msgs
-import robo50_node.srv
-import robo50_node.msg
+import bobby_node.srv
+import bobby_node.msg
 
 from rqt_robot_dashboard.dashboard import Dashboard
 from rqt_robot_dashboard.widgets import MonitorDashWidget, ConsoleDashWidget, MenuDashWidget, BatteryDashWidget, IconToolButton, NavViewDashWidget
@@ -11,7 +11,7 @@ from rqt_robot_dashboard.widgets import MonitorDashWidget, ConsoleDashWidget, Me
 from QtGui import *
 from python_qt_binding.QtCore import QSize, Qt
 
-from .battery import Robo50Battery
+from .battery import BobbyBattery
 from motor_widget import MotorWidget, MotorButton
 
 import rospkg
@@ -19,7 +19,7 @@ import os.path
 
 rp = rospkg.RosPack()
 
-image_path = image_path = os.path.join(rp.get_path('robo50_dashboard'), 'images')
+image_path = image_path = os.path.join(rp.get_path('bobby_dashboard'), 'images')
 
 class BreakerButton(IconToolButton):
     def __init__(self, name, onclick):
@@ -35,7 +35,7 @@ class BreakerButton(IconToolButton):
         self.clicked.connect(onclick)
 
 
-class Robo50Dashboard(Dashboard):
+class BobbyDashboard(Dashboard):
     def setup(self, context):
         self.message = None
 
@@ -46,9 +46,9 @@ class Robo50Dashboard(Dashboard):
         # before being used by dashboard_callback. Could be done more cleanly than this
         # though.
         self.lap_bat = BatteryDashWidget("Laptop")
-        self.create_bat = Robo50Battery("Create")
+        self.create_bat = BobbyBattery("Create")
 
-        self._set_motor = rospy.ServiceProxy('robo50_node/set_motor', robo50_node.srv.SetMotor)
+        self._set_motor = rospy.ServiceProxy('bobby_node/set_motor', bobby_node.srv.SetMotor)
 
         self.motors = [MotorButton(self.context, 0, lambda x, y: self.motor_control(x, y)),
                       MotorButton(self.context, 1, lambda x, y: self.motor_control(x, y)),
@@ -59,7 +59,7 @@ class Robo50Dashboard(Dashboard):
         
     def motor_control(self, motor_id, speed):
         try:
-            motor_cmd = robo50_node.srv.SetMotorRequest(motor_id, speed)
+            motor_cmd = bobby_node.srv.SetMotorRequest(motor_id, speed)
             self._set_motor(motor_cmd)
         except rospy.ServiceException, e:
             self.message = QMessageBox()
@@ -79,7 +79,7 @@ class Robo50Dashboard(Dashboard):
         self._dashboard_message = msg
         self._last_dashboard_message_time = rospy.get_time()
   
-        battery_status = {}  # Used to store Robo50Battery status info
+        battery_status = {}  # Used to store BobbyBattery status info
         laptop_battery_status = {}
         op_mode = None
         for status in msg.status:

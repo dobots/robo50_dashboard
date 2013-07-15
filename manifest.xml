@@ -1,5 +1,5 @@
 <package>
-  <description brief="robo50_dashboard">
+  <description brief="bobby_dashboard">
       
   </description>
   <author>Dominik Egger</author>
@@ -9,7 +9,7 @@
 
   <depend package="diagnostic_msgs"/>
   <!-- <depend package="create_node"/> -->
-  <depend package="robo50_node" />
+  <depend package="bobby_node" />
 <!--  <depend package="roslib"/> -->
   <depend package="rospy"/>
 <!--  <depend package="std_srvs"/> -->

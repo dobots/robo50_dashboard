@@ -1,4 +1,4 @@
-import roslib;roslib.load_manifest('robo50_dashboard')
+import roslib;roslib.load_manifest('bobby_dashboard')
 import rospy
 
 from rqt_robot_dashboard.widgets import BatteryDashWidget
@@ -8,9 +8,9 @@ def non_zero(value):
       return 0.00001 
    return value
 
-class Robo50Battery(BatteryDashWidget):
+class BobbyBattery(BatteryDashWidget):
     def __init__(self, name='battery'):
-        super(Robo50Battery, self).__init__(name)
+        super(BobbyBattery, self).__init__(name)
 
         self._power_consumption = 0.0
         self._pct = 0.0

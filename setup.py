@@ -3,9 +3,9 @@ from setuptools import setup
 import sys
 sys.path.insert(0, 'src')
 
-setup(name='robo50_dashboard',
+setup(name='bobby_dashboard',
       version= '0.1.0',
-      packages=['robo50_dashboard'],
+      packages=['bobby_dashboard'],
       package_dir = {'':'src'},
       install_requires=[],
       author = "Dominik Egger", 
